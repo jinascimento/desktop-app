@@ -1,4 +1,26 @@
 {
+  "author": {
+    "name": "Jhonatan I. Nascimento",
+    "email": "jhonatan-nascimento94@hotmail.com",
+    "url": "https://github.com/jinascimento"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "build": {
+    "appId": "appId",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2019 Seu Nome",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "name": "desktop-app",
   "version": "0.1.0",
   "private": true,
@@ -9,13 +31,18 @@
     "electron-is-dev": "^1.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-build": "yarn build",
+    "electron-build": "electron-builder -mwl"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,8 +60,12 @@
     ]
   },
   "devDependencies": {
+    "@rescripts/cli": "^0.0.13",
+    "@rescripts/rescript-env": "^0.0.11",
     "concurrently": "^5.1.0",
     "electron": "^8.0.1",
+    "electron-builder": "^22.3.2",
+    "typescript": "^3.7.5",
     "wait-on": "^4.0.0"
   }
 }
